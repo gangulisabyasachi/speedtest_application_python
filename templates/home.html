@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test</title>
+    <script>
+        async function runSpeedTest() {
+            document.getElementById('status').innerText = 'Running speed test...';
+
+            const response = await fetch('/speedtest');
+            const result = await response.json();
+
+            document.getElementById('download_speed').innerText = `Download speed: ${result.download_speed.toFixed(2)} Mbps`;
+            document.getElementById('upload_speed').innerText = `Upload speed: ${result.upload_speed.toFixed(2)} Mbps`;
+            document.getElementById('ping').innerText = `Ping: ${result.ping.toFixed(2)} ms`;
+            document.getElementById('status').innerText = 'Speed test completed.';
+        }
+    </script>
+</head>
+<body>
+    <h1>Speed Test</h1>
+    <button onclick="runSpeedTest()">Run Speed Test</button>
+    <p id="status"></p>
+    <p id="download_speed"></p>
+    <p id="upload_speed"></p>
+    <p id="ping"></p>
+</body>
+</html>
